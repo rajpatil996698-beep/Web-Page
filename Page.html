@@ -1,0 +1,1333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Raj Pawar | Computer Engineering</title>
+
+    <style>
+        /* =========================
+           BASIC RESET
+        ========================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            color: white;
+            overflow-x: hidden;
+
+            background:
+                radial-gradient(circle at 10% 20%, rgba(59,130,246,0.35), transparent 30%),
+                radial-gradient(circle at 90% 80%, rgba(139,92,246,0.35), transparent 30%),
+                linear-gradient(135deg, #020617, #0f172a, #172554);
+
+            min-height: 100vh;
+        }
+
+
+        /* =========================
+           NAVIGATION
+        ========================== */
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+
+            width: 100%;
+            height: 75px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            padding: 0 7%;
+
+            background: rgba(2, 6, 23, 0.65);
+            backdrop-filter: blur(15px);
+
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: 800;
+            letter-spacing: 1px;
+
+            background: linear-gradient(
+                90deg,
+                #38bdf8,
+                #818cf8
+            );
+
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        nav a {
+            color: #cbd5e1;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #38bdf8;
+        }
+
+
+        /* =========================
+           SLIDER
+        ========================== */
+
+        .slider {
+            width: 100%;
+            min-height: 100vh;
+
+            position: relative;
+
+            overflow: hidden;
+        }
+
+        .slide {
+            min-height: 100vh;
+
+            display: none;
+
+            align-items: center;
+            justify-content: center;
+
+            padding: 120px 8% 80px;
+
+            animation: slideIn 0.7s ease;
+        }
+
+        .slide.active {
+            display: flex;
+        }
+
+        @keyframes slideIn {
+
+            from {
+                opacity: 0;
+                transform: translateX(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+
+        }
+
+
+        /* =========================
+           SLIDE CONTENT
+        ========================== */
+
+        .content {
+            max-width: 1100px;
+            width: 100%;
+
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+
+            gap: 60px;
+
+            align-items: center;
+        }
+
+        .text {
+            animation: fadeUp 0.9s ease;
+        }
+
+        @keyframes fadeUp {
+
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+        }
+
+        .tag {
+            display: inline-block;
+
+            padding: 8px 16px;
+
+            border-radius: 30px;
+
+            background: rgba(56,189,248,0.1);
+
+            border: 1px solid rgba(56,189,248,0.3);
+
+            color: #38bdf8;
+
+            font-size: 14px;
+
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: clamp(45px, 7vw, 82px);
+
+            line-height: 1.05;
+
+            margin-bottom: 20px;
+        }
+
+        h1 span {
+            background: linear-gradient(
+                90deg,
+                #38bdf8,
+                #818cf8,
+                #c084fc
+            );
+
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        h2 {
+            font-size: clamp(32px, 5vw, 55px);
+
+            margin-bottom: 20px;
+        }
+
+        .subtitle {
+            font-size: 22px;
+
+            color: #94a3b8;
+
+            margin-bottom: 20px;
+        }
+
+        .description {
+            max-width: 650px;
+
+            color: #cbd5e1;
+
+            font-size: 17px;
+
+            line-height: 1.8;
+
+            margin-bottom: 30px;
+        }
+
+
+        /* =========================
+           BUTTONS
+        ========================== */
+
+        .buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 14px 27px;
+
+            border-radius: 30px;
+
+            text-decoration: none;
+
+            color: white;
+
+            font-weight: 600;
+
+            border: 1px solid rgba(255,255,255,0.15);
+
+            background: linear-gradient(
+                135deg,
+                #0284c7,
+                #4f46e5
+            );
+
+            transition: 0.3s;
+
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            transform: translateY(-4px);
+
+            box-shadow:
+                0 12px 30px rgba(59,130,246,0.3);
+        }
+
+        .btn.secondary {
+            background: rgba(255,255,255,0.07);
+        }
+
+
+        /* =========================
+           PROFILE CARD
+        ========================== */
+
+        .profile-card {
+            padding: 35px;
+
+            border-radius: 30px;
+
+            text-align: center;
+
+            background: rgba(255,255,255,0.07);
+
+            border: 1px solid rgba(255,255,255,0.12);
+
+            backdrop-filter: blur(20px);
+
+            box-shadow:
+                0 25px 70px rgba(0,0,0,0.35);
+
+            animation: floating 4s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+
+            0%,100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-12px);
+            }
+
+        }
+
+        .profile-icon {
+
+            width: 180px;
+            height: 180px;
+
+            margin: auto auto 25px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            border-radius: 50%;
+
+            font-size: 80px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #0ea5e9,
+                    #6366f1
+                );
+
+            box-shadow:
+                0 20px 50px rgba(37,99,235,0.4);
+        }
+
+        .profile-card h3 {
+            font-size: 27px;
+            margin-bottom: 8px;
+        }
+
+        .profile-card p {
+            color: #94a3b8;
+        }
+
+
+        /* =========================
+           FEATURE CARDS
+        ========================== */
+
+        .features {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 15px;
+
+            margin-top: 25px;
+        }
+
+        .feature {
+
+            padding: 20px;
+
+            border-radius: 18px;
+
+            background:
+                rgba(255,255,255,0.06);
+
+            border:
+                1px solid rgba(255,255,255,0.1);
+
+            transition: 0.3s;
+        }
+
+        .feature:hover {
+
+            transform: translateY(-5px);
+
+            background:
+                rgba(255,255,255,0.11);
+        }
+
+        .feature-icon {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .feature h4 {
+            margin-bottom: 5px;
+        }
+
+        .feature p {
+            color: #94a3b8;
+            font-size: 14px;
+        }
+
+
+        /* =========================
+           SKILLS
+        ========================== */
+
+        .skills {
+
+            width: 100%;
+            max-width: 700px;
+        }
+
+        .skill {
+            margin-bottom: 25px;
+        }
+
+        .skill-title {
+
+            display: flex;
+            justify-content: space-between;
+
+            margin-bottom: 8px;
+
+            color: #e2e8f0;
+        }
+
+        .skill-bar {
+
+            height: 10px;
+
+            background:
+                rgba(255,255,255,0.08);
+
+            border-radius: 20px;
+
+            overflow: hidden;
+        }
+
+        .skill-progress {
+
+            height: 100%;
+
+            border-radius: 20px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #38bdf8,
+                    #6366f1
+                );
+
+            animation: progress 1.5s ease;
+        }
+
+        @keyframes progress {
+
+            from {
+                width: 0;
+            }
+
+        }
+
+
+        /* =========================
+           STATS
+        ========================== */
+
+        .stats {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 15px;
+
+            margin-top: 30px;
+        }
+
+        .stat {
+
+            padding: 20px;
+
+            text-align: center;
+
+            border-radius: 18px;
+
+            background:
+                rgba(255,255,255,0.06);
+
+            border:
+                1px solid rgba(255,255,255,0.1);
+        }
+
+        .stat h3 {
+
+            font-size: 30px;
+
+            color: #38bdf8;
+
+            margin-bottom: 5px;
+        }
+
+        .stat p {
+            color: #94a3b8;
+            font-size: 14px;
+        }
+
+
+        /* =========================
+           SLIDER BUTTONS
+        ========================== */
+
+        .arrow {
+
+            position: absolute;
+
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            width: 50px;
+            height: 50px;
+
+            border-radius: 50%;
+
+            border: 1px solid rgba(255,255,255,0.15);
+
+            background:
+                rgba(255,255,255,0.08);
+
+            color: white;
+
+            font-size: 22px;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+
+            z-index: 50;
+        }
+
+        .arrow:hover {
+
+            background:
+                rgba(56,189,248,0.25);
+
+            transform:
+                translateY(-50%) scale(1.08);
+        }
+
+        .prev {
+            left: 25px;
+        }
+
+        .next {
+            right: 25px;
+        }
+
+
+        /* =========================
+           DOTS
+        ========================== */
+
+        .dots {
+
+            position: absolute;
+
+            bottom: 30px;
+
+            left: 50%;
+
+            transform: translateX(-50%);
+
+            display: flex;
+
+            gap: 10px;
+
+            z-index: 50;
+        }
+
+        .dot {
+
+            width: 11px;
+            height: 11px;
+
+            border-radius: 50%;
+
+            border: none;
+
+            background: #64748b;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+        }
+
+        .dot.active {
+
+            width: 32px;
+
+            border-radius: 20px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #38bdf8,
+                    #6366f1
+                );
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================== */
+
+        @media(max-width: 800px) {
+
+            nav {
+                padding: 0 5%;
+            }
+
+            nav ul {
+                gap: 15px;
+            }
+
+            nav a {
+                font-size: 13px;
+            }
+
+            .content {
+
+                grid-template-columns: 1fr;
+
+                text-align: center;
+
+                gap: 35px;
+            }
+
+            .description {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .buttons {
+                justify-content: center;
+            }
+
+            .profile-card {
+                max-width: 400px;
+                margin: auto;
+            }
+
+            .arrow {
+                display: none;
+            }
+
+            .features {
+                text-align: left;
+            }
+
+            .stats {
+                margin-bottom: 20px;
+            }
+        }
+
+        @media(max-width: 500px) {
+
+            nav {
+                height: 65px;
+            }
+
+            nav ul {
+                gap: 10px;
+            }
+
+            nav a {
+                font-size: 12px;
+            }
+
+            .logo {
+                font-size: 20px;
+            }
+
+            .slide {
+                padding-top: 100px;
+            }
+
+            .profile-icon {
+                width: 130px;
+                height: 130px;
+                font-size: 60px;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     NAVIGATION
+========================== -->
+
+<nav>
+
+    <div class="logo">
+        Raj Pawar
+    </div>
+
+    <ul>
+
+        <li>
+            <a href="#" onclick="goToSlide(0)">
+                Home
+            </a>
+        </li>
+
+        <li>
+            <a href="#" onclick="goToSlide(1)">
+                About
+            </a>
+        </li>
+
+        <li>
+            <a href="#" onclick="goToSlide(2)">
+                Skills
+            </a>
+        </li>
+
+    </ul>
+
+</nav>
+
+
+<!-- =========================
+     SLIDER
+========================== -->
+
+<main class="slider">
+
+
+<!-- =========================
+     SLIDE 1
+========================== -->
+
+<section class="slide active">
+
+    <div class="content">
+
+        <div class="text">
+
+            <span class="tag">
+                👋 WELCOME TO MY PORTFOLIO
+            </span>
+
+            <h1>
+                Hi, I'm
+                <span>Raj Pawar</span>
+            </h1>
+
+            <p class="subtitle">
+                Computer Engineering Student
+            </p>
+
+            <p class="description">
+                Welcome to my professional portfolio.
+                I am passionate about technology, programming,
+                web development and creating innovative digital
+                solutions.
+            </p>
+
+            <div class="buttons">
+
+                <button
+                    class="btn"
+                    onclick="nextSlide()">
+                    Explore My Profile →
+                </button>
+
+                <button
+                    class="btn secondary"
+                    onclick="showMessage()">
+                    Say Hello 👋
+                </button>
+
+            </div>
+
+            <p
+                id="helloMessage"
+                style="
+                    margin-top:20px;
+                    color:#67e8f9;
+                ">
+            </p>
+
+        </div>
+
+
+        <div class="profile-card">
+
+            <div class="profile-icon">
+                👨‍💻
+            </div>
+
+            <h3>
+                Raj Pawar
+            </h3>
+
+            <p>
+                Computer Engineering
+            </p>
+
+            <div class="stats">
+
+                <div class="stat">
+                    <h3>3+</h3>
+                    <p>Projects</p>
+                </div>
+
+                <div class="stat">
+                    <h3>5+</h3>
+                    <p>Skills</p>
+                </div>
+
+                <div class="stat">
+                    <h3>100%</h3>
+                    <p>Passion</p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     SLIDE 2
+========================== -->
+
+<section class="slide">
+
+    <div class="content">
+
+        <div class="text">
+
+            <span class="tag">
+                ABOUT ME
+            </span>
+
+            <h2>
+                Building Ideas
+                <span>Into Reality.</span>
+            </h2>
+
+            <p class="description">
+
+                I am Raj Pawar, a Computer Engineering student
+                interested in software development, web
+                technologies and modern computing.
+
+                <br><br>
+
+                I enjoy learning new technologies and turning
+                creative ideas into useful applications.
+
+            </p>
+
+            <div class="features">
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        💻
+                    </div>
+
+                    <h4>
+                        Development
+                    </h4>
+
+                    <p>
+                        Building modern and responsive websites.
+                    </p>
+
+                </div>
+
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        🚀
+                    </div>
+
+                    <h4>
+                        Innovation
+                    </h4>
+
+                    <p>
+                        Exploring new ideas and technologies.
+                    </p>
+
+                </div>
+
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        📚
+                    </div>
+
+                    <h4>
+                        Learning
+                    </h4>
+
+                    <p>
+                        Continuously improving my technical skills.
+                    </p>
+
+                </div>
+
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        🎯
+                    </div>
+
+                    <h4>
+                        Goals
+                    </h4>
+
+                    <p>
+                        Becoming a professional software engineer.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="profile-card">
+
+            <div class="profile-icon">
+                🎓
+            </div>
+
+            <h3>
+                Computer Engineering
+            </h3>
+
+            <p>
+                Student & Future Software Engineer
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     SLIDE 3
+========================== -->
+
+<section class="slide">
+
+    <div class="content">
+
+        <div class="text">
+
+            <span class="tag">
+                MY TECHNICAL SKILLS
+            </span>
+
+            <h2>
+                Skills &
+                <span>Technology</span>
+            </h2>
+
+            <p class="description">
+                Here are some of the technologies and
+                programming skills I am learning and developing.
+            </p>
+
+            <div class="skills">
+
+                <div class="skill">
+
+                    <div class="skill-title">
+                        <span>HTML</span>
+                        <span>90%</span>
+                    </div>
+
+                    <div class="skill-bar">
+                        <div
+                            class="skill-progress"
+                            style="width:90%">
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="skill">
+
+                    <div class="skill-title">
+                        <span>CSS</span>
+                        <span>85%</span>
+                    </div>
+
+                    <div class="skill-bar">
+                        <div
+                            class="skill-progress"
+                            style="width:85%">
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="skill">
+
+                    <div class="skill-title">
+                        <span>JavaScript</span>
+                        <span>75%</span>
+                    </div>
+
+                    <div class="skill-bar">
+                        <div
+                            class="skill-progress"
+                            style="width:75%">
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="skill">
+
+                    <div class="skill-title">
+                        <span>Python</span>
+                        <span>70%</span>
+                    </div>
+
+                    <div class="skill-bar">
+                        <div
+                            class="skill-progress"
+                            style="width:70%">
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="buttons">
+
+                <button
+                    class="btn"
+                    onclick="showSkills()">
+                    View Skills ✓
+                </button>
+
+            </div>
+
+            <p
+                id="skillMessage"
+                style="
+                    margin-top:15px;
+                    color:#67e8f9;
+                ">
+            </p>
+
+        </div>
+
+
+        <div class="profile-card">
+
+            <div class="profile-icon">
+                🚀
+            </div>
+
+            <h3>
+                Future Software Engineer
+            </h3>
+
+            <p>
+                Learn • Build • Innovate
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     SLIDER ARROWS
+========================== -->
+
+<button
+    class="arrow prev"
+    onclick="previousSlide()"
+    aria-label="Previous slide">
+
+    ❮
+
+</button>
+
+
+<button
+    class="arrow next"
+    onclick="nextSlide()"
+    aria-label="Next slide">
+
+    ❯
+
+</button>
+
+
+
+<!-- =========================
+     SLIDER DOTS
+========================== -->
+
+<div class="dots">
+
+    <button
+        class="dot active"
+        onclick="goToSlide(0)">
+    </button>
+
+    <button
+        class="dot"
+        onclick="goToSlide(1)">
+    </button>
+
+    <button
+        class="dot"
+        onclick="goToSlide(2)">
+    </button>
+
+</div>
+
+
+</main>
+
+
+
+<script>
+
+    /* =========================
+       SLIDER JAVASCRIPT
+    ========================== */
+
+    const slides =
+        document.querySelectorAll(".slide");
+
+    const dots =
+        document.querySelectorAll(".dot");
+
+    let currentSlide = 0;
+
+
+    function showSlide(index) {
+
+        if (index >= slides.length) {
+            index = 0;
+        }
+
+        if (index < 0) {
+            index = slides.length - 1;
+        }
+
+        slides.forEach(function(slide) {
+            slide.classList.remove("active");
+        });
+
+        dots.forEach(function(dot) {
+            dot.classList.remove("active");
+        });
+
+        slides[index].classList.add("active");
+
+        dots[index].classList.add("active");
+
+        currentSlide = index;
+    }
+
+
+    function nextSlide() {
+
+        showSlide(currentSlide + 1);
+
+    }
+
+
+    function previousSlide() {
+
+        showSlide(currentSlide - 1);
+
+    }
+
+
+    function goToSlide(index) {
+
+        showSlide(index);
+
+    }
+
+
+    /* =========================
+       HELLO BUTTON
+    ========================== */
+
+    function showMessage() {
+
+        const message =
+            document.getElementById("helloMessage");
+
+        message.textContent =
+            "✨ Thanks for visiting Raj Pawar's portfolio!";
+
+        setTimeout(function() {
+
+            message.textContent = "";
+
+        }, 4000);
+
+    }
+
+
+    /* =========================
+       SKILLS BUTTON
+    ========================== */
+
+    function showSkills() {
+
+        document.getElementById("skillMessage")
+            .textContent =
+            "✓ These are my current technical skills.";
+
+    }
+
+
+    /* =========================
+       AUTO SLIDER
+    ========================== */
+
+    let autoSlide =
+        setInterval(function() {
+
+            nextSlide();
+
+        }, 7000);
+
+
+    /* =========================
+       PAUSE WHEN MOUSE IS OVER
+    ========================== */
+
+    document
+        .querySelector(".slider")
+        .addEventListener("mouseenter", function() {
+
+            clearInterval(autoSlide);
+
+        });
+
+
+    document
+        .querySelector(".slider")
+        .addEventListener("mouseleave", function() {
+
+            autoSlide =
+                setInterval(function() {
+
+                    nextSlide();
+
+                }, 7000);
+
+        });
+
+
+    /* =========================
+       KEYBOARD CONTROLS
+    ========================== */
+
+    document.addEventListener("keydown", function(event) {
+
+        if (event.key === "ArrowRight") {
+            nextSlide();
+        }
+
+        if (event.key === "ArrowLeft") {
+            previousSlide();
+        }
+
+    });
+
+</script>
+
+</body>
+</html>
